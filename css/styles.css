@@ -16,18 +16,30 @@ body {
 
 /* Aqui comienza el backdrop*/
 
-.is-hidden {
+.backdrop.is-hidden {
   visibility: hidden;
+  opacity: 0;
+
+}
+
+.backdrop.is-hidden > .modal {
+  transform: scale(0);
 }
 
 .backdrop {
   width: 100vw;
   height: 100vh;
   background-color: #00000033;
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
 }
 
 .modal {
@@ -41,6 +53,8 @@ body {
   background-color: var(--color-blanco);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  transform: scale(1);
+  transition: 1000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .open-button {
@@ -123,7 +137,7 @@ button.modal-close-button {
   margin-right: 1em;
 }
 
-ul.top-page-buttons {
+.top-page-buttons {
   display: inherit;
   list-style: none;
   display: flex;
@@ -137,15 +151,12 @@ ul.top-page-buttons {
   text-decoration: none;
   margin: 0 2em;
   display: flex;
-  position: relative;
+  position: relative; 
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.top-button:hover,
-.top-button:focus,
-.top-button:active {
+.top-button:hover {
   color: var(--color-azul);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
 }
 
 .active {
@@ -172,48 +183,45 @@ ul.top-page-buttons {
 }
 
 .top-contact-item {
-  fill: var(--color-gris);
   color: var(--color-gris);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
-.top-contact-item:hover,
-.top-contact-item:focus,
-.top-contact-item:active {
+  .top-contact-item:hover,
+  .top-contact-item:focus,
+  .top-contact-item:active {
+  color: var(--color-azul);
   fill: var(--color-azul);
 }
 
-li .top-contact-button {
+.top-contact-button {
   display: flex;
   align-items: center;
   margin: 0;
   text-decoration: none;
   margin-right: 30px;
+  color: currentColor;
 }
 
 .top-contact {
   font-weight: 500;
-  color: var(--color-gris);
   text-decoration: none;
   padding: 0;
-  margin: 0 30px 0 10px; 
+  margin: 0 30px 0 10px;
 }
 
 .email {
   width: 16px;
   height: 12px;
   margin-right: 10px;
+  fill: currentColor;
 }
 
 .smartphone {
   width: 10px;
   height: 16px;
   margin-right: 10px;
-}
-
-.top-contact:hover {
-  color: var(--color-azul);
-  fill: var(--color-azul);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: currentColor;
 }
 
 /* Aqui termina el header */
@@ -243,6 +251,7 @@ li .top-contact-button {
   border-radius: 4px;
   border: none;
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-list-button:hover,
@@ -252,7 +261,6 @@ li .top-contact-button {
   color: var(--color-blanco);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Aqui termina los botones de filtrado */
@@ -285,7 +293,6 @@ li .top-contact-button {
 
 .image-hover-overlay-wrapper:hover>.image-hover-overlay {
   bottom: 0;
-
 }
 
 .portfolio-list-sections {
@@ -299,6 +306,7 @@ li .top-contact-button {
 }
 
 .portfolio-list-section {
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   flex-basis: calc((100% - 90px) / 3);
 }
 
@@ -307,7 +315,6 @@ li .top-contact-button {
 .portfolio-list-section:active {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-list-section-link {
@@ -329,7 +336,6 @@ li .top-contact-button {
   font-weight: 900;
   line-height: 2;
   color: var(--color-negro);
-  text-transform: uppercase;
   text-decoration: none;
   margin: 0;
 }
@@ -379,12 +385,12 @@ li .top-contact-button {
   border: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .top-banner-button-request:hover,
 .top-banner-button-request:focus {
   background-color: #188ce8;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);;
 }
 
 /* Aqui termina seccion heroes (studio-index) */
@@ -566,18 +572,21 @@ li .top-contact-button {
   width: 44px;
   height: 44px;
   fill: #AFB1B8;
+  background-color: var(--color-blanco);
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bg-icon:hover,
 .bg-icon:focus,
 .bg-icon:active {
-  background-color: var(--color-azul);
   fill: var(--color-blanco);
+  background-color: var(--color-azul);
   border-radius: 50%;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);;
+  
 }
 
 .social-media-logos {
@@ -621,21 +630,22 @@ margin: 0 15px;
   justify-content: center;
   align-items: center;
   border: 1px solid #AFB1B8;
+  color: var(--color-gris);
   border-radius: 4px;
-  fill: #AFB1B8;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .regular-costumer-item:hover,
 .regular-costumer-item:focus,
 .regular-costumer-item:active {
-  fill: var(--color-azul);
+  color: var(--color-azul);
   border: 1px solid var(--color-azul);
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .regular-costumer-logos {
   width: 106px;
   height: 60px;
+  fill: currentColor;
 }
 
 /* Aqui comienza el footer */
@@ -668,6 +678,7 @@ margin: 0 15px;
   font-style: normal;
   text-decoration: none;
   color: var(--color-blanco);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .end-info {
@@ -682,7 +693,6 @@ margin: 0 15px;
 .end-info:hover,
 .end-info:focus {
   color: var(--color-azul);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);;
 }
 
 .footer-social-media {
@@ -719,6 +729,7 @@ li.footer-social-media-logos {
   align-items: center;
   border-radius: 50%;
   margin: 0 10px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-bg-icon:hover,
@@ -727,7 +738,6 @@ li.footer-social-media-logos {
   background-color: var(--color-azul);
   fill: var(--color-blanco);
   border-radius: 50%;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-media-logos {
